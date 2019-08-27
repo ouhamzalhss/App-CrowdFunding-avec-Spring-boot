@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="template">
+<head>
+    <meta charset="utf-8">
+    <title>Insert title here</title>
+
+</head>
+<script src="../static/css/js/jquery.min.js"></script>
+<script th:src="@{js/jquery.min.js}"></script>
+<body>
+<div layout:fragment="content">
+
+
+    <div class="container ">
+        <div class="panel panel-primary">
+            <div class="panel-heading">View d'un Projet</div>
+            <div class="panel-body">
+
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+                            allowfullscreen></iframe>
+                </div>
+
+
+            </div>
+        </div>
+
+        <ul class="nav navbar-nav project-nav collapse navbar-collapse" data-nom-slugified-projet="tzic">
+            <li class="tab-presentation active">
+                <a class="ajax" onclick="getDescription();">Le projet</a>
+            </li>
+            <li class="tab-operation ">
+                <a href="/fr/projet/24731818-tzic/operation" class="ajax">L'opération</a>
+            </li>
+            <li class="tab-news ">
+                <a href="/fr/projet/24731818-tzic/news" class="ajax">News <span class="badge badge-default">28</span>
+                </a>
+            </li>
+            <li class="tab-commentaires ">
+                <a href="/fr/projet/24731818-tzic/commentaires" class="ajax">Commentaires <span
+                        class="badge badge-default">357</span></a>
+            </li>
+            <li class="tab-temoignages ">
+                <a href="/fr/projet/24731818-tzic/temoignages" class="ajax">Témoignages <span
+                        class="badge badge-default">48</span></a>
+            </li>
+            <li class="tab-live ">
+                <a href="/fr/projet/24731818-tzic/live" rel="nofollow">Live <span
+                        class="badge badge-default">1</span></a>
+            </li>
+
+        </ul>
+
+
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="project-tab-content">
+                    <div class="descriptionProjet">
+                        <div id="ajaxLoadedContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../static/css/js/jquery.min.js"></script>
+<script th:src="@{js/jquery.min.js}"></script>
+
+<script src="../static/js/projet.js"></script>
+<script th:src="@{js/projet.js}"></script>
+</body>
+</html>

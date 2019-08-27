@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	<div class="container">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Liste des Entrepreneurs</div>
+			<div class="panel-body">
+			<div class="container">
+			<form th:action="@{/entrepreneurs}" method="get">
+				<label >Mot Cle:</label>
+				<input type="text" name="mc"/>
+				<button type="submit" class="btn btn-primary">Chercher</button>
+
+			</form>
+
+			</div>
+				<table class="table tabel-striped">
+		<tr>
+			<th>Nom</th><th>prenom</th><th>cin</th><th>téléphone</th>
+			<th>email</th><th>fonction</th><th>Adresse</th><th class="text-right">Action</th>
+		</tr>
+		<tr th:each="e:${listEntrepreneurs}">
+			<td th:text="${e.nom}"></td>
+			<td th:text="${e.prenom}"></td>
+			<td th:text="${e.cin}"></td>
+			<td th:text="${e.tele}"></td>
+			<td th:text="${e.email}"></td>
+			<td th:text="${e.fonction}"></td>
+			<td th:text="${e.adresse}"></td>
+			<td class="text-right">
+				<div class="btn-group flex-btn-group-container">
+					<button type="submit"
+							class="btn btn-info btn-sm">
+						<fa-icon [icon]="'eye'"></fa-icon>
+						<span class="d-none d-md-inline" ><a th:href="@{/entrepreneurs(code=${e.id})}">View</a></span>
+					</button>
+					<button type="submit"
+							class="btn btn-primary btn-sm">
+						<fa-icon [icon]="'pencil-alt'"></fa-icon>
+						<span class="d-none d-md-inline" ><a th:href="@{/entrepreneurs(code=${e.id})}">Edit</a></span>
+					</button>
+					<button type="submit"
+							class="btn btn-success btn-sm">
+						<fa-icon [icon]="'pencil-alt'"></fa-icon>
+						<span class="d-none d-md-inline" ><a th:href="@{/entrepreneurs(code=${e.id})}">Valider</a></span>
+					</button>
+					<button type="submit"
+							class="btn btn-danger btn-sm">
+						<fa-icon [icon]="'times'"></fa-icon>
+						<span class="d-none d-md-inline" ><a th:href="@{/entrepreneurs(code=${e.id})}">Delete</a></span>
+					</button>
+				</div>
+			</td>
+			
+		</tr>
+		</table>
+			</div>
+			</div>
+		</div>
+		<div>
+			<ul  class="nav nav-pills">
+				<li th:class="${pageCourante==status.index}?'active':''" th:each="p,status:${pages}" >
+				<a th:href="@{/entrepreneurs(page=${status.index},size=5,mc=${motCle})}" th:text="${status.index}"></a>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	
+	<div class="container col-md-6 col-md-offset-3">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Ajout d'un Projet</div>
+			<div class="panel-body">
+				<form th:action="@{/saveProjet}" method="post">
+					<div class="embed-responsive embed-responsive-16by9">
+						<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Nom Projet:</label>
+						<input class="form-control" name="nomProjet" type="text" th:value="${projet.nomProjet}"/>
+						<span class="text-danger" th:errors="${projet.nomProjet}"></span>
+					</div> 
+					<div class="form-group">
+						<label class="control-label">Description du Projet:</label>
+						<input class="form-control" name="descriptionProjet" type="text" th:value="${projet.descriptionProjet}"/>
+						<span class="text-danger" th:errors="${projet.descriptionProjet}"></span>
+					</div> 
+					<div class="form-group">
+						<label class="control-label">delai de Projet:</label>
+						<input class="form-control" name="delaiProjet" type="text" th:value="${projet.delaiProjet}"/>
+						<span class="text-danger" th:errors="${projet.delaiProjet}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Date debut de Projet:</label>
+						<input class="form-control" name="dateDebut" type="date" th:value="${projet.dateDebut}"/>
+						<span class="text-danger" th:errors="${projet.dateDebut}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">nature de Projet:</label>
+						<input class="form-control" name="natureProjet" type="text" th:value="${projet.natureProjet}"/>
+						<span class="text-danger" th:errors="${projet.natureProjet}"></span>
+					</div>
+					<div class="form-group">
+					<label class="control-label">Fonds A Apportes:</label>
+					<input class="form-control" name="fondsApportes" type="text" th:value="${projet.fondsApportes}"/>
+					<span class="text-danger" th:errors="${projet.fondsApportes}"></span>
+				</div>
+					<div class="form-group">
+						<label class="control-label">Fonds A Lever:</label>
+						<input class="form-control" name="fondsALever" type="text" th:value="${projet.fondsALever}"/>
+						<span class="text-danger" th:errors="${projet.fondsALever}"></span>
+					</div>
+					
+						<button type="submit" class="btn btn-primary">Save</button>
+					
+				</form>
+			
+		</div>
+		</div>
+	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+	  th:href="@{css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+	  th:href="@{css/style.css}"/>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-grid.min.css"
+	  th:href="@{css/bootstrap-grid.min.css}"/>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-reboot.min.css"
+	  th:href="@{css/bootstrap-reboot.min.css}"/>
+<body>
+	<div layout:fragment="content">
+	<div class="container">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Liste des Projets</div>
+			<div class="panel-body">
+			<div class="container">
+			<form th:action="@{/projets}" method="get">
+				<label >Mot Cle:</label>
+				<input type="text" name="mc"/>
+				<button type="submit" class="btn btn-primary">Chercher</button>
+
+			</form>
+				<a th:href="@{/formProjet}"><i class="btn btn-primary">Add</i></a>
+			</div>
+				<table class="table tabel-striped">
+		<tr>
+			<th>Nom</th><th>delai</th><th>date debut</th>
+			<th>isCloture</th><th>fonds A Apportes</th><th>fonds A Lever</th><th class="text-right">Action</th>
+		</tr>
+		<tr th:each="e:${listProjets}">
+			<td th:text="${e.nomProjet}"></td>
+			<td th:text="${e.delaiProjet}"></td>
+			<td th:text="${e.dateDebut}"></td>
+			<td th:text="${e.isCloture}"></td>
+			<td th:text="${e.fondsApportes}"></td>
+			<td th:text="${e.fondsALever}"></td>
+			<td class="text-right">
+				<div class="btn-group flex-btn-group-container">
+					<button type="submit"
+							class="btn btn-info btn-sm">
+						<fa-icon [icon]="'eye'"></fa-icon>
+						<span class="d-none d-md-inline" ><a th:href="@{/viewProjet(id=${e.id})}">View</a></span>
+					</button>
+					<button type="submit"
+							class="btn btn-primary btn-sm">
+						<fa-icon [icon]="'pencil-alt'"></fa-icon>
+						<span class="d-none d-md-inline" ><a th:href="@{/editProjet(id=${e.id})}">Edit</a></span>
+					</button>
+					<button type="submit"
+							class="btn btn-success btn-sm">
+						<fa-icon [icon]="'pencil-alt'"></fa-icon>
+						<span class="d-none d-md-inline" ><a th:href="@{/projets(id=${e.id})}">Valider</a></span>
+					</button>
+					<button type="submit"
+							class="btn btn-danger btn-sm">
+						<fa-icon [icon]="'times'"></fa-icon>
+						<span class="d-none d-md-inline" ><a th:href="@{/projets(id=${e.id})}">Delete</a></span>
+					</button>
+				</div>
+			</td>
+			
+		</tr>
+		</table>
+			</div>
+			</div>
+		</div>
+		<div>
+			<ul  class="nav nav-pills">
+				<li th:class="${pageCourante==status.index}?'active':''" th:each="p,status:${pages}" >
+				<a th:href="@{/projets(page=${status.index},size=5,mc=${motCle})}" th:text="${status.index}"></a>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+</body>
+</html>
